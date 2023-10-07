@@ -9,6 +9,8 @@ import "openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Burnable.
 import "openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol";
 import "openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721Votes.sol";
 
+import "./AchievementContract.sol";
+
 interface IERC6551Registry {
     event AccountCreated(
         address account,
@@ -44,6 +46,8 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
     //TokenboundAccount implementation
     IERC6551Registry public ERC6551Registry;
     address public ERC6551AccountImplementation;
+    
+    AchievementContract public achievementContract;
  
     constructor(address _ERC6551Registry, address _ERC6551AccountImplementation, string memory name, string memory symbol)
         ERC721(name, symbol)
@@ -55,6 +59,9 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
         _grantRole(DEFAULT_ADMIN_ROLE, tx.origin);
         _grantRole(PAUSER_ROLE, tx.origin);
         _grantRole(MINTER_ROLE, tx.origin);
+        
+        AchievementContract addedAchievementContract = new AchievementContract(address(this));
+        achievementContract = addedAchievementContract;
         
     }
 
