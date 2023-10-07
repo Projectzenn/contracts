@@ -2,15 +2,19 @@
 pragma solidity ^0.8.13;
 
 import {Test, console2} from "forge-std/Test.sol";
-import {Counter} from "../src/Counter.sol";
+import {GroupRegistry} from "../src/GroupRegistry.sol";
 
-contract CounterTest is Test {
-    Counter public counter;
+contract GroupRegistryTest is Test {
+    GroupRegistry public groupRegistry;
+
 
     function setUp() public {
-        counter = new Counter();
-        counter.setNumber(0);
+        address accountRegistry = address(0x1);
+        address accountImplementation = address(0x2);
+        
+        groupRegistry = new GroupRegistry(accountRegistry, accountImplementation);
     }
+  /*   
 
     function test_Increment() public {
         counter.increment();
@@ -20,5 +24,5 @@ contract CounterTest is Test {
     function testFuzz_SetNumber(uint256 x) public {
         counter.setNumber(x);
         assertEq(counter.number(), x);
-    }
+    } */
 }
