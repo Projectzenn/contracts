@@ -7,11 +7,18 @@ import "openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Burnabl
 import "openzeppelin-contracts/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
 contract AchievementContract is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
-    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {}
+    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {
+        string memory baseURI = "https://api.careerzen.org/achievement/";
+    string memory ownerAddress = string(abi.encodePacked(initialOwner));
+    string memory fullURI = string(abi.encodePacked(baseURI, ownerAddress, "/"));
+    _setURI(fullURI);
+    }
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
     }
+    
+    
 
     function mint(address account, uint256 id, uint256 amount, bytes memory data)
         public
@@ -46,6 +53,5 @@ contract AchievementContract is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply
     virtual public override onlyOwner {
         super.safeTransferFrom(from, to, id, amount, data);
     }
-    
     
 }

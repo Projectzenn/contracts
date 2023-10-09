@@ -34,7 +34,7 @@ contract GroupRegistry is Ownable(msg.sender) {
     //make sure that we add the copmany here already 
     function createGroup(string memory _name, string memory _image, string memory _details) public  {
         
-        GroupToken newGroup = new GroupToken(accountImplementation, accountRegistry, _name, _image);
+        GroupToken newGroup = new GroupToken(accountImplementation, accountRegistry, _name, _image, _details);
         //address of the newCompany 
         pendingCompany.push(newGroup);
         emit CompanyAdded(companyCount, _name, _image, _details, msg.sender, address(newGroup));

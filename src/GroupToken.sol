@@ -46,10 +46,11 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
     //TokenboundAccount implementation
     IERC6551Registry public ERC6551Registry;
     address public ERC6551AccountImplementation;
+    string public details;
     
     AchievementContract public achievementContract;
  
-    constructor(address _ERC6551Registry, address _ERC6551AccountImplementation, string memory name, string memory symbol)
+    constructor(address _ERC6551Registry, address _ERC6551AccountImplementation, string memory name, string memory symbol, string memory _details)
         ERC721(name, symbol)
         EIP712(name, "1")
     {
@@ -59,7 +60,7 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
         _grantRole(DEFAULT_ADMIN_ROLE, tx.origin);
         _grantRole(PAUSER_ROLE, tx.origin);
         _grantRole(MINTER_ROLE, tx.origin);
-        
+        details = _details;
         AchievementContract addedAchievementContract = new AchievementContract(address(this));
         achievementContract = addedAchievementContract;
         
@@ -68,6 +69,7 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
     function pause() public onlyRole(PAUSER_ROLE) {
         _pause();
     }
+    
 
     function unpause() public onlyRole(PAUSER_ROLE) {
         _unpause();
@@ -79,6 +81,10 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
     {
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
+    }
+    
+    function updateDetails(string memory _details) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        details = _details;
     }
 
     // The following functions are overrides required by Solidity.
@@ -115,4 +121,7 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
     {
         return super.supportsInterface(interfaceId);
     }
+    
+    //We want all the achievement functionalities to work here 
+
 }
