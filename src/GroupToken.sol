@@ -49,7 +49,16 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
     string public details;
     
     AchievementContract public achievementContract;
- 
+    
+    //events for querying. 
+    event AchievementAdded(uint256 indexed achievementId, string indexed name, bool indexed locked);
+    event MemberCreated(address indexed member, uint256 indexed tokenId, address indexed tokenboundAccount);
+    event GroupUpdated(string name, string image, string details);   
+    event AchievementContractCreated(address indexed achievementContract, uint creationTime);
+    event AchievementRewarded(address indexed member, uint256 indexed achievementId, uint256 indexed amount);
+    event AchievementBatchRewarded(address indexed member, uint256[] indexed achievementIds, uint256[] indexed amounts);
+    
+    
     constructor(address _ERC6551Registry, address _ERC6551AccountImplementation, string memory name, string memory symbol, string memory _details)
         ERC721(name, symbol)
         EIP712(name, "1")
@@ -64,6 +73,9 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
         AchievementContract addedAchievementContract = new AchievementContract(address(this));
         achievementContract = addedAchievementContract;
         
+        createMember(tx.origin);
+        
+        emit AchievementContractCreated(address(addedAchievementContract), block.timestamp);   
     }
 
     function pause() public onlyRole(PAUSER_ROLE) {
@@ -74,17 +86,74 @@ contract GroupToken is ERC721, ERC721URIStorage, ERC721Pausable, AccessControl, 
     function unpause() public onlyRole(PAUSER_ROLE) {
         _unpause();
     }
+    
+    //automatically add the user with this 
+    function createMember(address to) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        //get the token id 
+        uint256 tokenId = totalSupply() + 1;
+        _safeMint(to, tokenId);
+        require(tokenBoundCreation(tokenId), "Tokenbound account creation failed");
+        address tokenbounded = getTBA(tokenId);
+        
+        emit MemberCreated(to, tokenId, tokenbounded);
+    }
 
-    function safeMint(address to, uint256 tokenId, string memory uri)
+    function safeMint(address to, uint256 tokenId)
         public
         onlyRole(MINTER_ROLE)
     {
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
+        require(tokenBoundCreation(tokenId), "Tokenbound account creation failed");
+        address tokenbounded = getTBA(tokenId);
+        
+        emit MemberCreated(to, tokenId, tokenbounded);
     }
     
     function updateDetails(string memory _details) public onlyRole(DEFAULT_ADMIN_ROLE) {
         details = _details;
+        
+        emit GroupUpdated(name(), symbol(), details);
+    }
+
+    function addAchievement(string memory _description, bool _locked) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        uint tokenId = achievementContract.addAchievement(_description, _locked);
+        
+        emit AchievementAdded(tokenId, _description, _locked);
+    }
+    
+    function distributeAchievement(uint256 _achievementId, address _to, uint256 _amount) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        achievementContract.mint(_to, _achievementId, _amount, "");
+        emit AchievementRewarded(_to, _achievementId, _amount);
+    }
+    
+    function batchDistibuteAchievements(uint256[] memory _achievementIds, address _to, uint256[] memory _amounts) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        achievementContract.mintBatch(_to, _achievementIds, _amounts, "");
+        emit AchievementBatchRewarded(_to, _achievementIds, _amounts);
+    }
+    
+    //check if the tokenbound account is created 
+
+    function tokenBoundCreation(uint256 tokenId) internal returns (bool) {
+        ERC6551Registry.createAccount(
+            ERC6551AccountImplementation,
+            block.chainid,
+            address(this),
+            tokenId,
+            0,
+            abi.encodeWithSignature("initialize()", msg.sender)
+        );
+        return true;
+    }
+    
+    function getTBA(uint256 _tokenId) public view returns (address) {
+        return
+            ERC6551Registry.account(
+                ERC6551AccountImplementation,
+                block.chainid,
+                address(this),
+                _tokenId,
+                0
+            );
     }
 
     // The following functions are overrides required by Solidity.
