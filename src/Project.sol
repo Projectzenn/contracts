@@ -65,7 +65,7 @@ contract ProjectContract is AccessControl {
     constructor() {
         _grantRole(ADMIN_ROLE, tx.origin);
     }
-å
+
     // Add a new member
     function addMember(address _member) external onlyRole(ADMIN_ROLE) {
         _grantRole(MEMBER_ROLE, _member);
