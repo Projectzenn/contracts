@@ -27,10 +27,6 @@ contract GroupTokenScript is Script {
         address accountRegistry = vm.parseAddress("0x02101dfB77FDE026414827Fdc604ddAF224F0921");
         GroupRegistry registry = new GroupRegistry(accountRegistry, accountImplementation);
         
-       registry.createGroup("Careerzen", "https://careerzen.org/images/careerzen.png", "https://api.careerzen.org");
-       registry.createGroup("Polygon Team", "https://careerzen.org/images/careerzen.png", "https://api.careerzen.org");
-       registry.createGroup("Careerzen Hack Team", "https://careerzen.org/images/careerzen.png", "https://api.careerzen.org");
-
        
         
         

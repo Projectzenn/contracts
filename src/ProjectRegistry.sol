@@ -17,7 +17,7 @@ contract ProjectRegistry is Ownable(msg.sender) {
     
     //make sure that we add the copmany here already 
     function createProject(string memory _name, string memory _image, string memory _details) public  {
-        ProjectContract newProject = new ProjectContract();
+        ProjectContract newProject = new ProjectContract(_name, _details);
         emit ProjectCreated(_name, _image, _details, msg.sender, address(newProject));
     }
 

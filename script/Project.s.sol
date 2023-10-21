@@ -14,7 +14,7 @@ contract ProjectScript is Script {
         console2.log("Account: ", account);
         vm.startBroadcast(privateKey);
         //deploy the tokencontract
-        ProjectContract project = new ProjectContract();
+        ProjectContract project = new ProjectContract("name", "details");
         
         //now we want to be able to update the project immediately 
         //deadline is current block timestamp + 10 days
@@ -26,7 +26,7 @@ contract ProjectScript is Script {
         project.addMember(member1);
         project.addMember(member2);
         
-        project.addMilestone("milestone 1", 60 * 60 * 24 * 10);
+
         
         
         vm.stopBroadcast();

@@ -14,14 +14,16 @@ contract AchievementContract is
 {
     mapping(uint256 => bool) public lockedAchievements;
     mapping(uint256 => string) public _tokenCIDs;
+    uint public totalAchievements;
 
     constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {
-        string memory baseURI = "https://api.careerzen.org/achievement/";
+        string memory baseURI = "https://ipfs.io/ipfs/";
         string memory ownerAddress = string(abi.encodePacked(initialOwner));
         string memory fullURI = string(
             abi.encodePacked(baseURI, ownerAddress, "/")
         );
         _setURI(fullURI);
+        totalAchievements = 0;        
     }
 
     function setURI(string memory newuri) public onlyOwner {
@@ -33,9 +35,11 @@ contract AchievementContract is
         string memory _details,
         bool locked
     ) public onlyOwner returns (uint256){
-        uint256 achievementId = totalSupply();
+        uint256 achievementId = totalAchievements + 1;
         lockedAchievements[achievementId] = locked;
         _tokenCIDs[achievementId] = _details;
+        totalAchievements = achievementId;
+        
 
         //we want to add a mapping to see if an item is locked or not
         return achievementId;   

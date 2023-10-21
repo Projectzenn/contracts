@@ -81,6 +81,8 @@ forge create src/GroupRegistry.sol:GroupRegistry --rpc-url $MUMBAI_RPC_URL --con
 
 forge create src/GroupRegistry.sol:GroupRegistry --rpc-url $MUMBAI_RPC_URL --arguments --private-key $DEV_PRIVATE_KEY --legacy
 
-% forge script script/GroupToken.s.sol:GroupTokenScript --rpc-url $MUMBAI_RPC_URL --etherscan-api-key  $POLYSCAN_API_KEY --broadcast --verify -vvvv       
+% forge script script/GroupToken.s.sol:GroupTokenScript --rpc-url $MUMBAI_RPC_URL --etherscan-api-key  $POLYSCAN_API_KEY --broadcast --verify -vvvv  
+forge script script/Group.s.sol:Group --rpc-url $MUMBAI_RPC_URL --etherscan-api-key  $POLYSCAN_API_KEY --broadcast --verify -vvvv     
+forge script script/ProjectRegistry.s.sol:ProjectRegistryScript --rpc-url $MUMBAI_RPC_URL --etherscan-api-key  $POLYSCAN_API_KEY --broadcast --verify -vvvv     
 
 ```

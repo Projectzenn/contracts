@@ -2276,8 +2276,8 @@
       }
     },
     "script/Group.s.sol": {
-      "lastModificationDate": 1697259175031,
-      "contentHash": "a2b7f5a29a6e4d6ad6aae668f8ff0864",
+      "lastModificationDate": 1697271737113,
+      "contentHash": "29a3b7813dac018aeae6b4ee34b17e5d",
       "sourceName": "script/Group.s.sol",
       "solcConfig": {
         "settings": {
@@ -2355,7 +2355,7 @@
         "src/AchievementContract.sol",
         "src/GroupToken.sol"
       ],
-      "versionRequirement": "^0.8.21",
+      "versionRequirement": "^0.8.19",
       "artifacts": {
         "GroupScript": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "Group.s.sol/GroupScript.json"
@@ -2363,8 +2363,8 @@
       }
     },
     "script/GroupToken.s.sol": {
-      "lastModificationDate": 1697211423169,
-      "contentHash": "e077845e37d1d057249af9cbc05b478d",
+      "lastModificationDate": 1697813260054,
+      "contentHash": "ff9349cef86bcf5f199ea1307dc606b7",
       "sourceName": "script/GroupToken.s.sol",
       "solcConfig": {
         "settings": {
@@ -2454,8 +2454,8 @@
       }
     },
     "script/Project.s.sol": {
-      "lastModificationDate": 1697211869368,
-      "contentHash": "803309c84150ffb78010c25f90ae17c4",
+      "lastModificationDate": 1697812011563,
+      "contentHash": "f5f9f161c7a9d7659790a4bc955f8d39",
       "sourceName": "script/Project.s.sol",
       "solcConfig": {
         "settings": {
@@ -2503,9 +2503,17 @@
         "lib/forge-std/src/safeconsole.sol",
         "lib/openzeppelin-contracts/contracts/access/AccessControl.sol",
         "lib/openzeppelin-contracts/contracts/access/IAccessControl.sol",
+        "lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
         "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol",
         "lib/openzeppelin-contracts/contracts/utils/structs/EnumerableSet.sol",
         "src/Project.sol"
       ],
@@ -2567,9 +2575,17 @@
         "lib/openzeppelin-contracts/contracts/access/AccessControl.sol",
         "lib/openzeppelin-contracts/contracts/access/IAccessControl.sol",
         "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
         "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol",
         "lib/openzeppelin-contracts/contracts/utils/structs/EnumerableSet.sol",
         "src/Project.sol",
         "src/ProjectRegistry.sol"
@@ -2582,8 +2598,8 @@
       }
     },
     "src/AchievementContract.sol": {
-      "lastModificationDate": 1697018062708,
-      "contentHash": "cf2599d4eda84be5b499a3db2240fa1d",
+      "lastModificationDate": 1697616746009,
+      "contentHash": "6abb6b49b80b51e60ab7d7b3058d92ce",
       "sourceName": "src/AchievementContract.sol",
       "solcConfig": {
         "settings": {
@@ -2638,7 +2654,7 @@
       }
     },
     "src/GroupRegistry.sol": {
-      "lastModificationDate": 1697226861298,
+      "lastModificationDate": 1697455257351,
       "contentHash": "83f98692e842184e9f58f276161e6343",
       "sourceName": "src/GroupRegistry.sol",
       "solcConfig": {
@@ -2711,8 +2727,8 @@
       }
     },
     "src/GroupToken.sol": {
-      "lastModificationDate": 1697227056475,
-      "contentHash": "f5437da145e2ea89fcd4f9035a024d49",
+      "lastModificationDate": 1697813238633,
+      "contentHash": "43fd0490698c2151725dcb468c930821",
       "sourceName": "src/GroupToken.sol",
       "solcConfig": {
         "settings": {
@@ -2786,8 +2802,8 @@
       }
     },
     "src/Project.sol": {
-      "lastModificationDate": 1697213287183,
-      "contentHash": "1efddbd0c6916ab7b57bab2944db1b72",
+      "lastModificationDate": 1697818015992,
+      "contentHash": "57ba052c74f9bc9c6f308ca38773bc57",
       "sourceName": "src/Project.sol",
       "solcConfig": {
         "settings": {
@@ -2821,21 +2837,32 @@
       "imports": [
         "lib/openzeppelin-contracts/contracts/access/AccessControl.sol",
         "lib/openzeppelin-contracts/contracts/access/IAccessControl.sol",
+        "lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
         "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol",
         "lib/openzeppelin-contracts/contracts/utils/structs/EnumerableSet.sol"
       ],
       "versionRequirement": "^0.8.19",
       "artifacts": {
+        "IPUSHCommInterface": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "Project.sol/IPUSHCommInterface.json"
+        },
         "ProjectContract": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "Project.sol/ProjectContract.json"
         }
       }
     },
     "src/ProjectRegistry.sol": {
-      "lastModificationDate": 1697019548271,
-      "contentHash": "0c77bf33ecc0c1c5010e51d6567d087c",
+      "lastModificationDate": 1697812294541,
+      "contentHash": "6a3f847b226a99f4b9cdfb86113529f6",
       "sourceName": "src/ProjectRegistry.sol",
       "solcConfig": {
         "settings": {
@@ -2870,9 +2897,17 @@
         "lib/openzeppelin-contracts/contracts/access/AccessControl.sol",
         "lib/openzeppelin-contracts/contracts/access/IAccessControl.sol",
         "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts/contracts/interfaces/draft-IERC6093.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
         "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol",
         "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/SignedMath.sol",
         "lib/openzeppelin-contracts/contracts/utils/structs/EnumerableSet.sol",
         "src/Project.sol"
       ],
@@ -2880,6 +2915,47 @@
       "artifacts": {
         "ProjectRegistry": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "ProjectRegistry.sol/ProjectRegistry.json"
+        }
+      }
+    },
+    "src/interface/IERC6551Registry.sol": {
+      "lastModificationDate": 1697803016190,
+      "contentHash": "70ceb3f8c635ba6d350dfd2c5dfc7d8e",
+      "sourceName": "src/interface/IERC6551Registry.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": null,
+      "artifacts": {
+        "IERC6551Registry": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "IERC6551Registry.sol/IERC6551Registry.json"
         }
       }
     },
